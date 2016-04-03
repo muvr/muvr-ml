@@ -22,7 +22,7 @@ source $VENV/bin/activate
 pip2.7 install -r muvr-ml.pip
 
 # Install pem
-cd pem
+cd sensorcnn
 python setup.py install
 cd -
 
