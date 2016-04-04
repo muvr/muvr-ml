@@ -21,7 +21,13 @@ source $VENV/bin/activate
 # Install dependencies
 pip2.7 install -r muvr-ml.pip
 
-# Install pem
+# Install neon latest
+git clone https://github.com/NervanaSystems/neon.git $VENV/neon
+cd $VENV/neon
+make sysinstall
+cd -
+
+# Install our sensorcnn package
 cd sensorcnn
 python setup.py install
 cd -
