@@ -45,7 +45,7 @@ class MLPMeasurementModelTrainer(object):
             dslogger = logging.getLogger(name)
             dslogger.setLevel(40)
 
-        print 'Epochs: %d Batch-Size: %d' % (self.max_epochs, self.batch_size)
+        print('Epochs: %d Batch-Size: %d' % (self.max_epochs, self.batch_size))
 
     def generate_default_model(self, num_labels):
         """Generate layers and a MLP model using the given settings."""
@@ -87,7 +87,7 @@ class MLPMeasurementModelTrainer(object):
 
     def train(self, dataset, model=None):
         """Trains the passed model on the given dataset. If no model is passed, `generate_default_model` is used."""
-        print "Starting training..."
+        print("Starting training...")
         start = time.time()
 
         # The training will be run on the CPU. If a GPU is available it should be used instead.
@@ -109,7 +109,7 @@ class MLPMeasurementModelTrainer(object):
             model = self.generate_default_model(dataset.num_labels)
 
         lc = self.layers(dataset, model)
-        print lc
+        print(lc)
 
         args = NeonCallbackParameters()
         args.output_file = os.path.join(self.root_path, self.Callback_Store_Filename)
@@ -137,9 +137,9 @@ class MLPMeasurementModelTrainer(object):
 
         print('Misclassification error = %.1f%%'
               % (model.eval(dataset.test(), metric=Misclassification()) * 100))
-        print "Finished training!"
+        print("Finished training!")
         end = time.time()
-        print "Duration", end - start, "seconds"
+        print("Duration", end - start, "seconds")
 
         return model
 
