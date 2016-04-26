@@ -1,35 +1,18 @@
 #!/bin/bash
-set -xe
+set -e
 
-# Install pip
-if ! [ `command -v pip` ]
+# Install conda
+if [[ ! `conda --version` ]]
 then
-  sudo easy_install pip
+    # TODO install conda?
+    echo "You need to install conda first goto: http://conda.pydata.org/docs/download.html"
+    exit 1
 fi
 
-# Create virtual env
-if ! [ `command -v virtualenv` ]
+# Create env muvr_ml with python 3.5
+if [[ `conda env list|grep muvr_ml` ]]
 then
-  sudo pip2.7 install virtualenv
+    conda env update -f environment_mac.yml
+else
+    conda env create -f environment_mac.yml
 fi
-
-VENV=.venv
-rm -rf $VENV
-virtualenv $VENV -p /usr/bin/python2.7
-source $VENV/bin/activate
-
-# Install dependencies
-pip2.7 install -r muvr-ml.pip
-
-# Install neon latest
-git clone https://github.com/NervanaSystems/neon.git $VENV/neon
-cd $VENV/neon
-make sysinstall
-cd -
-
-# Install our sensorcnn package
-cd sensorcnn
-python setup.py install
-cd -
-
-source $VENV/bin/activate
