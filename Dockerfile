@@ -5,6 +5,7 @@ ENV PATH $CONDA_DIR/bin:$PATH
 
 RUN mkdir -p $CONDA_DIR && \
     echo export PATH=$CONDA_DIR/bin:'$PATH' > /etc/profile.d/conda.sh && \
+    apt-get update && \
     apt-get install -y wget && \
     wget --quiet https://repo.continuum.io/miniconda/Miniconda3-3.9.1-Linux-x86_64.sh && \
     apt-get -y purge wget && \
@@ -21,9 +22,11 @@ RUN useradd -m -s /bin/bash -N -u $NB_UID $NB_USER && \
     mkdir -p /src && \
     chown muvr /src
 
+RUN apt-get install -y g++  # Required for theano to execute optimized C-implementations (for both CPU and GPU)
+
 USER muvr
 
-RUN conda install -y python=3.5 theano=0.7* pandas=0.18* scikit-learn=0.17* notebook=4* nose && \
+RUN conda install -y python=3.5 theano=0.7* pandas=0.18* scikit-learn=0.17* notebook=4* nose matplotlib && \
     pip install keras ipdb && \
     conda clean -yt
 

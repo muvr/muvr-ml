@@ -9,7 +9,7 @@
 * pipelines to improve classification and other models
 * pipelines to train models to recognize repetitions of exercises
 
-This part of the project can be viewed as a data science playground. The models used in the application are trained using spark jobs written in either scala or python. Tasks that require more explorational analysis can be done using R.
+This part of the project can be viewed as a data science playground. The models used in the application are trained using python and exports the parameters of the trained model (configuration and weights).
 
 #### Other components of the system
 - [muvr-server](https://github.com/muvr/muvr-server) CQRS/ES cluster
