@@ -49,7 +49,7 @@ class AccelerationDataset(object):
 
         if augmented.num_examples > 0:
             augmented.shuffle()
-            augmented.s cale_features(self.Feature_Range, self.Feature_Mean)
+            augmented.scale_features(self.Feature_Range, self.Feature_Mean)
 
         return augmented
 
