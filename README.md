@@ -28,6 +28,7 @@ There are two ways to get started and work with the code, either by using docker
 
 ### Using Docker [recommended]
 All of the following commands assumes you have the data on the default Google drive directory on your home directory: `~/Google Drive/Exercise Data`.
+But you can override that data path by passing `DATA` arg to the command e.g.: `make dev DATA=~/my-data/my-exercises`
 #### Build the container and start a shell
 ```bash
 $ make dev
