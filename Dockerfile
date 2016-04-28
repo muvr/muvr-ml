@@ -33,3 +33,4 @@ RUN conda install -y python=3.5 theano=0.7* pandas=0.18* scikit-learn=0.17* note
 WORKDIR /src
 
 CMD jupyter notebook --port=8888 --ip=0.0.0.0
+
