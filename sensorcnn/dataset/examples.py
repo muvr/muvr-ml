@@ -74,19 +74,19 @@ def csv_file_iterator(root_directory):
 
 
 labels_mapping = {
-    'dumbbell-chest-press': 'setup-dumbbell-chest-press',
-    'dumbbell-bench-press': 'setup-dumbbell-chest-press',
-    'biceps-curl': 'setup-biceps-curl',
-    'bicep curls': 'setup-biceps-curl',
-    'bicep': 'setup-biceps-curl',
-    'bice': 'setup-biceps-curl',
-    'rope-tricep-pushdown': 'setup-rope-tricep-pushdown',
-    'rope-tricep-pushdown ': 'setup-rope-tricep-pushdown',
-    'Push-up': 'setup-push-up',
-    'push-up': 'setup-push-up',
-    'triceps-extension': 'setup-triceps-extension',
-    'lateral-raise': 'setup-lateral-raise',
-    'lateral raises': 'setup-lateral-raise',
+    'dumbbell-chest-press': 'dumbbell-chest-press',
+    'dumbbell-bench-press': 'dumbbell-chest-press',
+    'biceps-curl': 'biceps-curl',
+    'bicep curls': 'biceps-curl',
+    'bicep': 'biceps-curl',
+    'bice': 'biceps-curl',
+    'rope-tricep-pushdown': 'rope-tricep-pushdown',
+    'rope-tricep-pushdown ': 'rope-tricep-pushdown',
+    'Push-up': 'push-up',
+    'push-up': 'push-up',
+    'triceps-extension': 'triceps-extension',
+    'lateral-raise': 'lateral-raise',
+    'lateral raises': 'lateral-raise',
 }
 
 
