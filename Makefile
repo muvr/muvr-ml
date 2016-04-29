@@ -21,5 +21,4 @@ notebook: build
 	$(DOCKER) run -it -v `pwd`:/src -v $(DATA):/data -p 8888:8888 muvr_ml
 
 test: build
-	$(DOCKER) run -it -v `pwd`:/src -v $(DATA):/data muvr_ml nosetests -v */*_test.py
-
+	$(DOCKER) run -it -v `pwd`:/src -v $(DATA):/data muvr_ml nosetests -v sensorcnn

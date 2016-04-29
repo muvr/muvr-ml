@@ -26,8 +26,8 @@ RUN apt-get install -y g++  # Required for theano to execute optimized C-impleme
 
 USER muvr
 
-RUN conda install -y python=3.5 theano=0.7* pandas=0.18* scikit-learn=0.17* notebook=4* nose matplotlib && \
-    pip install keras ipdb && \
+RUN conda install -y python=3.5 pandas=0.18* scikit-learn=0.17* notebook=4* nose matplotlib && \
+    pip install theano keras ipdb && \
     conda clean -yt
 
 WORKDIR /src
