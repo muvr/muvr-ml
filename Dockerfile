@@ -32,5 +32,7 @@ RUN conda install -y python=3.5 pandas=0.18* scikit-learn=0.17* notebook=4* nose
 
 WORKDIR /src
 
+ENV NOSE_NOCAPTURE=0
+
 CMD jupyter notebook --port=8888 --ip=0.0.0.0
 

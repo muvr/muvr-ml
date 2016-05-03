@@ -30,6 +30,10 @@ class MLP(object):
         with open(filename, 'wb') as f:
             f.write(weights_string)
 
+    def save_layers(self, filename):
+        with open(filename, 'w') as f:
+            f.writelines(self.layers_string)
+
     @staticmethod
     def parse_layers(layers_string):
         xs = layers_string.split()

@@ -6,6 +6,7 @@ import pandas as pd
 from models.MLP import MLP
 from dataset.examples import *
 
+
 def test_mlp_balanced_data():
     print("Loading CSV files")
     all_samples = {}
@@ -71,5 +72,8 @@ def test_mlp_balanced_data():
     print(train_score)
     print(test_score)
 
-    # TODO: export the model
+    # Export the model
     model.save_weights("output/mlp/weights.raw")
+    model.save_layers("output/mlp/layers.txt")
+    with open("output/mlp/labels.txt", 'w') as f:
+        f.writelines("\n".join(setup_labels))
