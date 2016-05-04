@@ -146,6 +146,7 @@ mlp/build/
 ipython-analysis/.ipynb_checkpoints
 ipython-analysis/models/
 venv/
+.ipynb_checkpoints/
 
 ####
 # UNKNOWN: recommended by others, but I can't discover what these files are
