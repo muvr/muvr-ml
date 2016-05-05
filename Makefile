@@ -1,7 +1,7 @@
 help:
 	@cat Makefile
 
-DATA?="${HOME}/Google Drive/Exercise Data"
+DATA?=$(abspath ../muvr-exercise-data)
 
 ifdef GPU
 	DOCKER_FILE=DockerfileGPU
