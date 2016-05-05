@@ -5,6 +5,7 @@ import pandas as pd
 
 from models.MLP import MLP
 from dataset.examples import *
+from train.utils import *
 
 
 def test_mlp_balanced_data():
@@ -71,6 +72,12 @@ def test_mlp_balanced_data():
     test_score = model.evaluate(X_test, Y_test, batch_size=128)
     print(train_score)
     print(test_score)
+
+    # Export result into csv file
+    y_true = np.array([np.argmax(yi) + 1 if np.sum(yi) > 0 else 0 for yi in Y_test])
+    y_pred = np.array([np.argmax(yi) + 1 if np.sum(yi) > 0 else 0 for yi in model.predict(X_test)])
+    evaluation_tabel = evaluate(y_true, y_pred, ["no_exercise"] + setup_labels)
+    write_to_csv("output/mlp/evaluation_table.csv", evaluation_tabel)
 
     # Export the model
     model.save_weights("output/mlp/weights.raw")

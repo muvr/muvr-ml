@@ -19,6 +19,7 @@ class MLP(object):
         self.model.compile(loss='mean_squared_error', optimizer=sgd, metrics=["accuracy"])
         self.fit = self.model.fit
         self.evaluate = self.model.evaluate
+        self.predict = self.model.predict
 
     def add_layer(self, layer):
         input_dim, output_dim, activation = layer
