@@ -5,13 +5,14 @@ import struct
 
 
 class MLP(object):
-    def __init__(self, layers_string):
+    def __init__(self, config, name):
         """
         layers example: "150 id 64 Tanh_0 32 Tanh_1 6 Tanh_2"
         """
-        self.layers_string = layers_string
+        self.config = config
+        self.name = name
         self.model = Sequential()
-        layers = MLP.parse_layers(layers_string)
+        layers = MLP.parse_layers(config)
         for layer in layers:
             self.add_layer(layer)
 
@@ -33,11 +34,11 @@ class MLP(object):
 
     def save_layers(self, filename):
         with open(filename, 'w') as f:
-            f.writelines(self.layers_string)
+            f.writelines(self.config)
 
     @staticmethod
-    def parse_layers(layers_string):
-        xs = layers_string.split()
+    def parse_layers(config):
+        xs = config.split()
         dims = [int(x) for i, x in enumerate(xs) if i % 2 == 0]
         activations = [x.lower().split("_")[0] for i, x in enumerate(xs[2:]) if i % 2 == 1]
         return [x for x in zip(dims[:-1], dims[1:], activations)]

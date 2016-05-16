@@ -2,6 +2,7 @@ import os
 import errno
 import csv
 import numpy as np
+from datetime import datetime
 from sklearn.metrics import confusion_matrix
 
 
@@ -48,3 +49,19 @@ def evaluate(y_true, y_pred, labels):
 
     table[0][0] = "actual \ predicted"
     return table
+
+
+def timestamp():
+    return int(datetime.today().timestamp())
+
+
+def export(model, evaluation_tabel, setup_labels):
+    root_path = os.path.join("output", model.name, str(timestamp()))
+    os.makedirs(root_path)
+    write_to_csv(os.path.join(root_path, "evaluation_table.csv"), evaluation_tabel)
+    with open(os.path.join(root_path, "labels.txt"), 'w') as f:
+        f.writelines("\n".join(setup_labels))
+
+    # Export the model
+    model.save_weights(os.path.join(root_path, "weights.raw"))
+    model.save_layers(os.path.join(root_path, "layers.txt"))
