@@ -137,6 +137,9 @@ labels_mapping = {
 labels = list(set(labels_mapping.values()))
 
 
+setup_labels = ["setup_%s" % l for l in labels]
+
+
 all_labels = ['hiit-running-machine',
               'warm-up-cross-trainer',
               'dumbbell-chest-press',
