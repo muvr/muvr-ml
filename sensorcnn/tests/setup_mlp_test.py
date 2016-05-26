@@ -1,13 +1,25 @@
-import sys
-from functools import reduce
 import numpy as np
 import pandas as pd
+from functools import reduce
+from keras.layers.core import Dense, Dropout, Activation
+from keras.optimizers import SGD
 
 from models import MuvrSequential
 from dataset.utils import *
 from train.utils import *
 
-def test_mlp():
+def test_mlp_1():
+  model = MuvrSequential()
+  model.name = "mlp_1"
+  model.add(Dense(input_dim=750, output_dim=150, activation="tanh", init='uniform'))
+  model.add(Dropout(0.5))
+  model.add(Dense(input_dim=150, output_dim=100, activation="tanh", init='uniform'))
+  model.add(Dropout(0.5))
+  model.add(Dense(input_dim=100, output_dim=4, activation="tanh", init='uniform'))
+  train_mlp(model)
+
+def train_mlp(model):
+  print("Load all samples")
   all_samples = {}
   for filename in csv_file_iterator("/data/Setup Data/Mo"):
       samples = load_from_csv(filename)
@@ -21,9 +33,7 @@ def test_mlp():
   label_to_idx = lambda l: setup_labels_map.get(l, 0)
 
   df['target'] = df['label'].map(label_to_idx)
-
   positive_targets = df[df['target'] > 0]
-
   targets = positive_targets[['target']].as_matrix()
   samples = df[['x', 'y', 'z']].as_matrix()[positive_targets.index]
 
@@ -44,19 +54,7 @@ def test_mlp():
   # Split Data
   X_train, X_test, Y_train, Y_test = split(X, Y)
 
-  # Training
-  from keras.models import Sequential
-  from keras.layers.core import Dense, Dropout, Activation
-  from keras.optimizers import SGD
-
-  model = MuvrSequential()
-  model.name = "meshmesh"
-  model.add(Dense(input_dim=X.shape[1], output_dim=150, activation="tanh", init='uniform'))
-  model.add(Dropout(0.5))
-  model.add(Dense(input_dim=150, output_dim=100, activation="tanh", init='uniform'))
-  model.add(Dropout(0.5))
-  model.add(Dense(input_dim=100, output_dim=4, activation="tanh", init='uniform'))
-
+  print("Build the model")
   sgd = SGD(lr=0.1, decay=1e-6, momentum=0.9, nesterov=True)
   model.compile(loss='mean_squared_error', optimizer=sgd, metrics=["accuracy"])
 
