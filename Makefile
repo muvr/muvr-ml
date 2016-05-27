@@ -22,3 +22,9 @@ notebook: build
 
 test: build
 	$(DOCKER) run -it -v `pwd`:/src -v $(DATA):/data muvr_ml nosetests -v sensorcnn
+
+deploy-model:
+	#Example: make deploy-model MODEL=output/mlp_1/1464206380
+	cp $(MODEL)/labels.txt ../muvr-ios/Muvr/Models.bundle/setup_model.labels.txt
+	cp $(MODEL)/layers.txt ../muvr-ios/Muvr/Models.bundle/setup_model.layers.txt
+	cp $(MODEL)/weights.raw ../muvr-ios/Muvr/Models.bundle/setup_model.weights.raw
