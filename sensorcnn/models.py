@@ -12,9 +12,8 @@ class MuvrSequential(Sequential):
             f.write(weights_string)
 
     def save_layers(self, filename):
-        layers = "750 id 150 tanh 100 tanh 4 tanh"
         with open(filename, 'w') as f:
-            f.writelines(layers)
+            f.writelines(self.layers_as_string)
 
     @staticmethod
     def deep_flatten(xs):

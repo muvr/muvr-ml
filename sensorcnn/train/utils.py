@@ -65,3 +65,4 @@ def export(model, evaluation_tabel, setup_labels):
     # Export the model
     model.save_weights(os.path.join(root_path, "weights.raw"))
     model.save_layers(os.path.join(root_path, "layers.txt"))
+    print("Model saved to %s" % root_path)
